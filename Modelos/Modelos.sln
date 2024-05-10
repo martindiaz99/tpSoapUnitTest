@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServidorSOAP", "ServidorSOAP\ServidorSOAP.csproj", "{ECD8A1ED-8FED-43D8-A862-E92627AA5C8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Winform", "Winform\Winform.csproj", "{F31A9F37-4B3F-4630-A60C-F342FE88EDB9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECD8A1ED-8FED-43D8-A862-E92627AA5C8C} = {ECD8A1ED-8FED-43D8-A862-E92627AA5C8C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
