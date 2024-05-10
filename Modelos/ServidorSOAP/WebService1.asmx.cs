@@ -26,9 +26,11 @@ namespace ServidorSOAP
         }
 
         [WebMethod]
-        public string CalcularEspacioDisponible()
+        public double CalcularEspacioDisponible()
         {
-            return "Hola a todos";
+            double espacioDisponible = 0;
+
+            return espacioDisponible;
         }
     }
 }

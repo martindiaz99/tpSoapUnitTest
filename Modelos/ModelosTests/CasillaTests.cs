@@ -11,6 +11,8 @@ namespace Modelos.Tests
     [TestClass()]
     public class CasillaTests
     {
+        //Consultar si sacar la creacion de objetos
+
         [TestMethod()]
         public void CalcularEspacioTotalTest()
         {
