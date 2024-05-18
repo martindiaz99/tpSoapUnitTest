@@ -9,23 +9,194 @@
 //------------------------------------------------------------------------------
 
 namespace Winform.ServiceReference1 {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Mensaje", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class Mensaje : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int IdField;
+        
+        private int IdRemitenteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContenidoField;
+        
+        private double TamañoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int IdRemitente {
+            get {
+                return this.IdRemitenteField;
+            }
+            set {
+                if ((this.IdRemitenteField.Equals(value) != true)) {
+                    this.IdRemitenteField = value;
+                    this.RaisePropertyChanged("IdRemitente");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string Contenido {
+            get {
+                return this.ContenidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContenidoField, value) != true)) {
+                    this.ContenidoField = value;
+                    this.RaisePropertyChanged("Contenido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public double Tamaño {
+            get {
+                return this.TamañoField;
+            }
+            set {
+                if ((this.TamañoField.Equals(value) != true)) {
+                    this.TamañoField = value;
+                    this.RaisePropertyChanged("Tamaño");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.WebService1Soap")]
     public interface WebService1Soap {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalcularEspacioTotal", ReplyAction="*")]
-        double CalcularEspacioTotal();
+        double CalcularEspacioTotal(int idCasilla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalcularEspacioTotal", ReplyAction="*")]
-        System.Threading.Tasks.Task<double> CalcularEspacioTotalAsync();
+        System.Threading.Tasks.Task<double> CalcularEspacioTotalAsync(int idCasilla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalcularEspacioDisponible", ReplyAction="*")]
-        double CalcularEspacioDisponible();
+        double CalcularEspacioDisponible(int idCasilla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CalcularEspacioDisponible", ReplyAction="*")]
-        System.Threading.Tasks.Task<double> CalcularEspacioDisponibleAsync();
+        System.Threading.Tasks.Task<double> CalcularEspacioDisponibleAsync(int idCasilla);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento mensaje del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AgregarMensaje", ReplyAction="*")]
+        Winform.ServiceReference1.AgregarMensajeResponse AgregarMensaje(Winform.ServiceReference1.AgregarMensajeRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AgregarMensaje", ReplyAction="*")]
+        System.Threading.Tasks.Task<Winform.ServiceReference1.AgregarMensajeResponse> AgregarMensajeAsync(Winform.ServiceReference1.AgregarMensajeRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AgregarMensajeRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AgregarMensaje", Namespace="http://tempuri.org/", Order=0)]
+        public Winform.ServiceReference1.AgregarMensajeRequestBody Body;
+        
+        public AgregarMensajeRequest() {
+        }
+        
+        public AgregarMensajeRequest(Winform.ServiceReference1.AgregarMensajeRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AgregarMensajeRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public int idCasillaDestinatario;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public Winform.ServiceReference1.Mensaje mensaje;
+        
+        public AgregarMensajeRequestBody() {
+        }
+        
+        public AgregarMensajeRequestBody(int idCasillaDestinatario, Winform.ServiceReference1.Mensaje mensaje) {
+            this.idCasillaDestinatario = idCasillaDestinatario;
+            this.mensaje = mensaje;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AgregarMensajeResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AgregarMensajeResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Winform.ServiceReference1.AgregarMensajeResponseBody Body;
+        
+        public AgregarMensajeResponse() {
+        }
+        
+        public AgregarMensajeResponse(Winform.ServiceReference1.AgregarMensajeResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AgregarMensajeResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public bool AgregarMensajeResult;
+        
+        public AgregarMensajeResponseBody() {
+        }
+        
+        public AgregarMensajeResponseBody(bool AgregarMensajeResult) {
+            this.AgregarMensajeResult = AgregarMensajeResult;
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +226,47 @@ namespace Winform.ServiceReference1 {
                 base(binding, remoteAddress) {
         }
         
-        public double CalcularEspacioTotal() {
-            return base.Channel.CalcularEspacioTotal();
+        public double CalcularEspacioTotal(int idCasilla) {
+            return base.Channel.CalcularEspacioTotal(idCasilla);
         }
         
-        public System.Threading.Tasks.Task<double> CalcularEspacioTotalAsync() {
-            return base.Channel.CalcularEspacioTotalAsync();
+        public System.Threading.Tasks.Task<double> CalcularEspacioTotalAsync(int idCasilla) {
+            return base.Channel.CalcularEspacioTotalAsync(idCasilla);
         }
         
-        public double CalcularEspacioDisponible() {
-            return base.Channel.CalcularEspacioDisponible();
+        public double CalcularEspacioDisponible(int idCasilla) {
+            return base.Channel.CalcularEspacioDisponible(idCasilla);
         }
         
-        public System.Threading.Tasks.Task<double> CalcularEspacioDisponibleAsync() {
-            return base.Channel.CalcularEspacioDisponibleAsync();
+        public System.Threading.Tasks.Task<double> CalcularEspacioDisponibleAsync(int idCasilla) {
+            return base.Channel.CalcularEspacioDisponibleAsync(idCasilla);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Winform.ServiceReference1.AgregarMensajeResponse Winform.ServiceReference1.WebService1Soap.AgregarMensaje(Winform.ServiceReference1.AgregarMensajeRequest request) {
+            return base.Channel.AgregarMensaje(request);
+        }
+        
+        public bool AgregarMensaje(int idCasillaDestinatario, Winform.ServiceReference1.Mensaje mensaje) {
+            Winform.ServiceReference1.AgregarMensajeRequest inValue = new Winform.ServiceReference1.AgregarMensajeRequest();
+            inValue.Body = new Winform.ServiceReference1.AgregarMensajeRequestBody();
+            inValue.Body.idCasillaDestinatario = idCasillaDestinatario;
+            inValue.Body.mensaje = mensaje;
+            Winform.ServiceReference1.AgregarMensajeResponse retVal = ((Winform.ServiceReference1.WebService1Soap)(this)).AgregarMensaje(inValue);
+            return retVal.Body.AgregarMensajeResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Winform.ServiceReference1.AgregarMensajeResponse> Winform.ServiceReference1.WebService1Soap.AgregarMensajeAsync(Winform.ServiceReference1.AgregarMensajeRequest request) {
+            return base.Channel.AgregarMensajeAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Winform.ServiceReference1.AgregarMensajeResponse> AgregarMensajeAsync(int idCasillaDestinatario, Winform.ServiceReference1.Mensaje mensaje) {
+            Winform.ServiceReference1.AgregarMensajeRequest inValue = new Winform.ServiceReference1.AgregarMensajeRequest();
+            inValue.Body = new Winform.ServiceReference1.AgregarMensajeRequestBody();
+            inValue.Body.idCasillaDestinatario = idCasillaDestinatario;
+            inValue.Body.mensaje = mensaje;
+            return ((Winform.ServiceReference1.WebService1Soap)(this)).AgregarMensajeAsync(inValue);
         }
     }
 }

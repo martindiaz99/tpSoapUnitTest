@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Winform.ServiceReference1;
 
 namespace Winform
 {
@@ -17,9 +11,46 @@ namespace Winform
             InitializeComponent();
         }
 
-        private void BotonConsultarEspacioTotal_Click(object sender, EventArgs e)
+        WebService1SoapClient servicioConsulta = new WebService1SoapClient();
+
+        //En un mundo ideal, toma el id del usuario logueado
+        int idUsuarioLogueado = 1;
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            
+            ActualizarLabels();
+
+        }
+
+        private void ActualizarLabels()
+        {
+            double respuesta = servicioConsulta.CalcularEspacioTotal(idUsuarioLogueado);
+
+            labelTamañoBuzon.Text = "Tamaño de buzon: " + respuesta + " MB";
+
+            respuesta = servicioConsulta.CalcularEspacioDisponible(idUsuarioLogueado);
+
+            labelEspacioDisponible.Text = "Espacio disponible: " + respuesta + " MB";
+        }
+
+        private void botonEnviar_Click(object sender, EventArgs e)
+        {
+            int idDestinatario = int.Parse(textBoxDestinatario.Text);
+            string textoMensaje = textBoxMensaje.Text;
+            double peso = double.Parse(textBoxPeso.Text);
+
+            Mensaje mensajeParaAgregar = new Mensaje { Id = 3, IdRemitente = idUsuarioLogueado, Contenido = textoMensaje, Tamaño = peso };
+
+            bool respuesta = servicioConsulta.AgregarMensaje(idDestinatario, mensajeParaAgregar);
+
+            if (respuesta)
+            {
+                MessageBox.Show("El mensaje se envio correctamente");
+            }
+            else
+            {
+                MessageBox.Show("El mensaje no se pudo entregar. El peso supera el espacio disponible del destinatario");
+            }
         }
     }
 }

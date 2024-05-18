@@ -3,7 +3,11 @@
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="CalcularEspacioTotal">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCasilla" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="CalcularEspacioTotalResponse">
         <s:complexType>
@@ -13,12 +17,39 @@
         </s:complexType>
       </s:element>
       <s:element name="CalcularEspacioDisponible">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCasilla" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="CalcularEspacioDisponibleResponse">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="CalcularEspacioDisponibleResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarMensaje">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="idCasillaDestinatario" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="tns:Mensaje" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Mensaje">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdRemitente" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contenido" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tamaño" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AgregarMensajeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarMensajeResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -36,6 +67,12 @@
   <wsdl:message name="CalcularEspacioDisponibleSoapOut">
     <wsdl:part name="parameters" element="tns:CalcularEspacioDisponibleResponse" />
   </wsdl:message>
+  <wsdl:message name="AgregarMensajeSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarMensaje" />
+  </wsdl:message>
+  <wsdl:message name="AgregarMensajeSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarMensajeResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebService1Soap">
     <wsdl:operation name="CalcularEspacioTotal">
       <wsdl:input message="tns:CalcularEspacioTotalSoapIn" />
@@ -44,6 +81,10 @@
     <wsdl:operation name="CalcularEspacioDisponible">
       <wsdl:input message="tns:CalcularEspacioDisponibleSoapIn" />
       <wsdl:output message="tns:CalcularEspacioDisponibleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarMensaje">
+      <wsdl:input message="tns:AgregarMensajeSoapIn" />
+      <wsdl:output message="tns:AgregarMensajeSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebService1Soap" type="tns:WebService1Soap">
@@ -66,6 +107,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AgregarMensaje">
+      <soap:operation soapAction="http://tempuri.org/AgregarMensaje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebService1Soap12" type="tns:WebService1Soap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -80,6 +130,15 @@
     </wsdl:operation>
     <wsdl:operation name="CalcularEspacioDisponible">
       <soap12:operation soapAction="http://tempuri.org/CalcularEspacioDisponible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarMensaje">
+      <soap12:operation soapAction="http://tempuri.org/AgregarMensaje" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

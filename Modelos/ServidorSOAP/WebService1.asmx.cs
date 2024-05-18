@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Modelos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,18 +18,45 @@ namespace ServidorSOAP
     public class WebService1 : System.Web.Services.WebService
     {
 
-        [WebMethod]
-        public double CalcularEspacioTotal()
+        //Datos de ejemplo
+
+        List<Casilla> ListaCasillas = new List<Casilla>
         {
-            double tamañoTotal = 0;
+            new Casilla { Id = 1, Nombre = "Martin Diaz", Tamaño = 50000,
+                ListaMensajes = new List<Mensaje>
+                {
+                    new Mensaje {Id = 1, IdRemitente = 1, Contenido = "Buenos dias estimados, adjunto lo solicitado", Tamaño = 18 },
+                    new Mensaje {Id = 2, IdRemitente = 1, Contenido = "Va de nuevo: Me olvide el adjunto. Saludos!", Tamaño = 1101 }
+                }
+            }
+        };
+
+        [WebMethod]
+        public double CalcularEspacioTotal(int idCasilla)
+        {
+            Casilla casilla = ListaCasillas.Find(x => x.Id == idCasilla);
+
+            double tamañoTotal = casilla.CalcularEspacioTotal();
 
             return tamañoTotal;
         }
 
         [WebMethod]
-        public double CalcularEspacioDisponible()
+        public double CalcularEspacioDisponible(int idCasilla)
         {
-            double espacioDisponible = 0;
+            Casilla casilla = ListaCasillas.Find(x => x.Id == idCasilla);
+
+            double espacioDisponible = casilla.CalcularEspacioDisponible();
+
+            return espacioDisponible;
+        }
+
+        [WebMethod]
+        public bool AgregarMensaje(int idCasillaDestinatario, Mensaje mensaje)
+        {
+            Casilla casilla = ListaCasillas.Find(x => x.Id == idCasillaDestinatario);
+
+            bool espacioDisponible = casilla.AgregarMensaje(mensaje);
 
             return espacioDisponible;
         }

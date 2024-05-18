@@ -13,6 +13,21 @@ namespace Modelos
         public double Tamaño { get; set; }
         public List<Mensaje> ListaMensajes { get; set; }
 
+        public bool AgregarMensaje(Mensaje mensaje)
+        {
+            double capacidadConNuevoMensaje = CalcularEspacioTotal() + mensaje.Tamaño;
+
+            if (capacidadConNuevoMensaje < Tamaño)
+            {
+                ListaMensajes.Add(mensaje);
+                return true; 
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public double CalcularEspacioTotal()
         {
             double tamañoTotal = 0;
@@ -25,7 +40,7 @@ namespace Modelos
             return tamañoTotal;
         }
 
-        public double CalcularEspacioLibre()
+        public double CalcularEspacioDisponible()
         {
             double tamañoLibre = Tamaño - CalcularEspacioTotal();
 
